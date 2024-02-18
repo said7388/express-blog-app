@@ -41,9 +41,7 @@ export const validateInput = async (req: Request, res: Response, next: NextFunct
 
   try {
     const user = await prisma.user.findUnique({
-      where: {
-        email: email,
-      }
+      where: { email: email }
     });
 
     if (user) {

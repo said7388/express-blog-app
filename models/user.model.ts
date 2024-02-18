@@ -1,5 +1,3 @@
-import { Comment } from "./comment.model";
-import { Post } from "./post.model";
 
 export interface User {
   id: number;
@@ -8,6 +6,4 @@ export interface User {
   name: string;
   email: string;
   password: string;
-  Comment: Comment[];
-  Post: Post[];
-};
+}

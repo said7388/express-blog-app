@@ -1,13 +1,24 @@
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import express, { Application, Request, Response } from 'express';
+import rateLimit from 'express-rate-limit';
 import authRouter from './routers/auth.route';
-dotenv.config();
 
 const app: Application = express();
 const port = process.env.PORT || 4000;
+
+// Use middleware 
+dotenv.config();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Use Rate limiter for secure server
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000,
+  max: 100,
+  message: `You can only make 100 requests per minute`,
+});
+app.use(limiter);
 
 // App Home Route
 app.get('/', async (req: Request, res: Response) => {

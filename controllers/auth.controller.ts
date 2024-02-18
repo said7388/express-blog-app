@@ -57,9 +57,7 @@ export const userLogin = async (req: Request, res: Response) => {
 
   try {
     const user = await prisma.user.findUnique({
-      where: {
-        email: email,
-      }
+      where: { email: email }
     });
 
     if (!user) {
