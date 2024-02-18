@@ -14,8 +14,8 @@ model User {
   name      String
   email     String    @unique
   password  String
-  Comment   Comment[]
-  Post      Post[]
+  comment   Comment[]
+  post      Post[]
 
   @@map("user")
 }
@@ -26,9 +26,8 @@ model Post {
   updatedAt DateTime  @updatedAt
   title     String
   content   String?   @db.Text
-  published Boolean   @default(false)
   authorId  Int?
-  Comment   Comment[]
+  comment   Comment[]
   author    User?     @relation(fields: [authorId], references: [id])
 
   @@map("post")
@@ -42,7 +41,7 @@ model Comment {
   authorId  Int?
   postId    Int?
   author    User?    @relation(fields: [authorId], references: [id])
-  Post      Post?    @relation(fields: [postId], references: [id])
+  post      Post?    @relation(fields: [postId], references: [id])
 
   @@map("comment")
 }

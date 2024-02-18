@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import express, { Application, Request, Response } from 'express';
+import authRouter from './routers/auth.route';
 dotenv.config();
 
 const app: Application = express();
@@ -12,6 +13,10 @@ app.use(express.json());
 app.get('/', async (req: Request, res: Response) => {
   return res.send("Welcome to our Blog!");
 });
+
+// Other App routes
+app.use('/api/auth', authRouter);
+
 
 // catch 404 and forward to error handler
 app.use((req: Request, res: Response) => {
