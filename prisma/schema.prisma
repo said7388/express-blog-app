@@ -16,6 +16,7 @@ model User {
   password  String
   comment   Comment[]
   post      Post[]
+  Like      Like[]
 
   @@map("user")
 }
@@ -29,6 +30,7 @@ model Post {
   authorId  Int?
   comment   Comment[]
   author    User?     @relation(fields: [authorId], references: [id])
+  Like      Like[]
 
   @@map("post")
 }
@@ -44,4 +46,14 @@ model Comment {
   post      Post?    @relation(fields: [postId], references: [id])
 
   @@map("comment")
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int?
+  postId    Int?
+  user      User?    @relation(fields: [userId], references: [id])
+  post      Post?    @relation(fields: [postId], references: [id])
 }
