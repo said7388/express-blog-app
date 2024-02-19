@@ -53,7 +53,7 @@ export const userLogin = async (req: Request, res: Response) => {
       success: false,
       message: error.message,
     })
-  }
+  };
 
   try {
     const user = await prisma.user.findUnique({

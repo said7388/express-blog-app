@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import express, { Application, Request, Response } from 'express';
 import rateLimit from 'express-rate-limit';
 import authRouter from './routers/auth.route';
+import postRouter from './routers/post.route';
 
 const app: Application = express();
 const port = process.env.PORT || 4000;
@@ -27,6 +28,7 @@ app.get('/', async (req: Request, res: Response) => {
 
 // Other App routes
 app.use('/api/auth', authRouter);
+app.use('/api/posts', postRouter);
 
 
 // catch 404 and forward to error handler
